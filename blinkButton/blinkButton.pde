@@ -4,6 +4,8 @@
 #define BUTTON 7  // the input pin for the pushbutton
 
 int val = 0;      // store the state of the input pin
+int old_val = 0;  // stores the previous val
+int state = 0;    // 0 = LED OFF, 1 = ON
 
 void setup()
 {
@@ -15,10 +17,12 @@ void loop()
 {
   val = digitalRead(BUTTON); // read the input
 
-  if (val == HIGH) {
-    digitalWrite(LED, HIGH);
-  } else {
-    digitalWrite(LED, LOW);
+  if ((val == HIGH) && (old_val == LOW)) {
+    state = 1 - state;
   }
+
+  old_val = val;
+
+  digitalWrite(LED, state);
 }
 
