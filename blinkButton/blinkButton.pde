@@ -19,6 +19,7 @@ void loop()
 
   if ((val == HIGH) && (old_val == LOW)) {
     state = 1 - state;
+    delay(10);
   }
 
   old_val = val;
